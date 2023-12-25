@@ -1,0 +1,61 @@
+[05:20:32] [main/INFO]: Loading Minecraft 1.20.1 with Fabric Loader 0.15.3
+[05:20:32] [main/INFO]: Fabric is preparing JARs on first launch, this may take a few seconds...
+[05:20:33] [main/INFO]: Loading 4 mods:
+	- fabricloader 0.15.3
+	   \-- mixinextras 0.3.2
+	- java 17
+	- minecraft 1.20.1
+[05:20:33] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=file:/home/hiro/wrkspc/mineOps/libraries/net/fabricmc/sponge-mixin/0.12.5+mixin.0.8.5/sponge-mixin-0.12.5+mixin.0.8.5.jar Service=Knot/Fabric Env=SERVER
+[05:20:38] [main/INFO]: Environment: authHost='https://authserver.mojang.com', accountsHost='https://api.mojang.com', sessionHost='https://sessionserver.mojang.com', servicesHost='https://api.minecraftservices.com', name='PROD'
+[05:20:40] [main/INFO]: Loaded 7 recipes
+[05:20:40] [main/INFO]: Loaded 1271 advancements
+[05:20:40] [Server thread/INFO]: Starting minecraft server version 1.20.1
+[05:20:40] [Server thread/INFO]: Loading properties
+[05:20:40] [Server thread/INFO]: Default game type: SURVIVAL
+[05:20:40] [Server thread/INFO]: Generating keypair
+[05:20:40] [Server thread/INFO]: Starting Minecraft server on *:25565
+[05:20:40] [Server thread/INFO]: Using epoll channel type
+[05:20:41] [Server thread/INFO]: Preparing level "world"
+[05:20:43] [Server thread/INFO]: Preparing start region for dimension minecraft:overworld
+[05:20:44] [Worker-Main-6/INFO]: Preparing spawn area: 0%
+[05:20:44] [Worker-Main-9/INFO]: Preparing spawn area: 0%
+[05:20:44] [Worker-Main-13/INFO]: Preparing spawn area: 0%
+[05:20:45] [Worker-Main-12/INFO]: Preparing spawn area: 0%
+[05:20:45] [Worker-Main-7/INFO]: Preparing spawn area: 0%
+[05:20:46] [Worker-Main-8/INFO]: Preparing spawn area: 0%
+[05:20:46] [Worker-Main-7/INFO]: Preparing spawn area: 1%
+[05:20:47] [Worker-Main-3/INFO]: Preparing spawn area: 1%
+[05:20:47] [Worker-Main-9/INFO]: Preparing spawn area: 4%
+[05:20:48] [Worker-Main-11/INFO]: Preparing spawn area: 7%
+[05:20:48] [Worker-Main-11/INFO]: Preparing spawn area: 10%
+[05:20:49] [Worker-Main-7/INFO]: Preparing spawn area: 12%
+[05:20:49] [Worker-Main-5/INFO]: Preparing spawn area: 16%
+[05:20:50] [Worker-Main-3/INFO]: Preparing spawn area: 19%
+[05:20:50] [Worker-Main-11/INFO]: Preparing spawn area: 22%
+[05:20:51] [Worker-Main-13/INFO]: Preparing spawn area: 28%
+[05:20:51] [Worker-Main-1/INFO]: Preparing spawn area: 32%
+[05:20:52] [Worker-Main-11/INFO]: Preparing spawn area: 36%
+[05:20:52] [Worker-Main-10/INFO]: Preparing spawn area: 42%
+[05:20:53] [Worker-Main-10/INFO]: Preparing spawn area: 46%
+[05:20:53] [Worker-Main-14/INFO]: Preparing spawn area: 51%
+[05:20:54] [Worker-Main-13/INFO]: Preparing spawn area: 56%
+[05:20:54] [Worker-Main-4/INFO]: Preparing spawn area: 62%
+[05:20:55] [Worker-Main-3/INFO]: Preparing spawn area: 68%
+[05:20:55] [Worker-Main-12/INFO]: Preparing spawn area: 71%
+[05:20:56] [Worker-Main-6/INFO]: Preparing spawn area: 78%
+[05:20:56] [Worker-Main-11/INFO]: Preparing spawn area: 83%
+[05:20:57] [Worker-Main-3/INFO]: Preparing spawn area: 86%
+[05:20:57] [Worker-Main-8/INFO]: Preparing spawn area: 93%
+[05:20:58] [Server thread/INFO]: Time elapsed: 14426 ms
+[05:20:58] [Server thread/INFO]: Done (16.933s)! For help, type "help"
+[05:23:17] [Server thread/INFO]: Stopping the server
+[05:23:17] [Server thread/INFO]: Stopping server
+[05:23:17] [Server thread/INFO]: Saving players
+[05:23:17] [Server thread/INFO]: Saving worlds
+[05:23:17] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:overworld
+[05:23:20] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_nether
+[05:23:20] [Server thread/INFO]: Saving chunks for level 'ServerLevel[world]'/minecraft:the_end
+[05:23:21] [Server thread/INFO]: ThreadedAnvilChunkStorage (world): All chunks are saved
+[05:23:21] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM-1): All chunks are saved
+[05:23:21] [Server thread/INFO]: ThreadedAnvilChunkStorage (DIM1): All chunks are saved
+[05:23:21] [Server thread/INFO]: ThreadedAnvilChunkStorage: All dimensions are saved
