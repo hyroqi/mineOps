@@ -1,0 +1,4 @@
+# Basically this is for use when sshing to other servers, you would usually set their hosts here either in ip form or domain name
+
+[minecraft]
+localhost

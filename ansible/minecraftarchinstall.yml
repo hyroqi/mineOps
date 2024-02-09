@@ -1,0 +1,45 @@
+---
+- hosts: localhost
+  vars:
+    minecraft_version: "latest"
+
+  tasks:
+    # Installing using archlinux package manager, pacman.
+    # https://docs.ansible.com/archive/ansible/2.3/pacman_module.html
+    - name: Install Java
+      pacman:
+        name: jdk17-openjdk
+        state: present
+
+    # Don't understand why this part is necessary for installation especially before we even install jq
+    # # Checking if JQ is installed in /usr/bin/ using stat
+    # # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/stat_module.html
+    # - name: Check Jq path
+    #   stat:
+    #     path: /usr/bin/jq
+    #   register: jq_installed
+
+    # Creating and assignning the minecraft guser to its group using the group and user module
+    # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/group_module.html
+    # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/user_module.html
+    - name: Create Minecraft group
+      group:
+        name: "minecraft"
+        state: present
+    - name: Create Minecraft user and assign to minecraft group
+      user:
+        name: "minecraftadmin"
+        group: "minecraft"
+        comment: "Minecraft Admin"
+        state: present
+
+    # Creating the folder in which we house the minecraft server using the file module
+    # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html
+    - name: Create Server Directory
+      file: 
+        path: /opt/minecraftansible
+        owner: "minecraftadmin"
+        group: "minecraft"
+        state: directory
+        mode: 0755
+    
