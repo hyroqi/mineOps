@@ -1,6 +1,7 @@
 ---
 - hosts: localhost
   vars:
+    # We use this to control which server version we will install
     minecraft_version: "latest"
 
   tasks:
@@ -11,13 +12,13 @@
         name: jdk17-openjdk
         state: present
 
-    # Don't understand why this part is necessary for installation especially before we even install jq
-    # # Checking if JQ is installed in /usr/bin/ using stat
-    # # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/stat_module.html
-    # - name: Check Jq path
-    #   stat:
-    #     path: /usr/bin/jq
-    #   register: jq_installed
+    # Checking if JQ is installed in /usr/bin/ using stat
+    # This is done so we can either install or skip installing jq in a later step
+    # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/stat_module.html
+    - name: Check Jq path
+      stat:
+        path: /usr/bin/jq
+      register: jq_installed
 
     # Creating and assignning the minecraft guser to its group using the group and user module
     # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/group_module.html
@@ -42,4 +43,19 @@
         group: "minecraft"
         state: directory
         mode: 0755
+
+    # Installing Jq using curl < shell, what we use to install the server.jar
+    # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html
+    - name: Install Jq
+      shell: curl -o /usr/bin/jq -sL https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 && chmod +x /usr/bin/jq
+      #This checks the previous step to see if jq is installed or not
+      when: jq_installed.stat.exists != true
     
+    # Download specific server version
+    - name: Download specific server version
+      shell: curl -o /opt/minecraftansible/server.jar $(curl `curl -sL https://launchermeta.mojang.com/mc/game/version_manifest.json | jq -r '.versions[] | select (.id == "{{ minecraft_version }}") | .url'` | jq -r '.downloads.server.url')
+      when: minecraft_version !="latest"
+
+    # Download latest server version
+    - name: Download latest server version
+      shell: curl -o /opt/minecraft/server.jar -sL $(curl `curl -sL https://launchermeta.mojang.com/mc/game/version_manifest.json | jq -r '.latest.release as $release | .versions[] | select(.id == $release) | .url'` | jq -r '.downloads.server.url')
