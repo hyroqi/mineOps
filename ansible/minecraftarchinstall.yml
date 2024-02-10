@@ -3,7 +3,6 @@
   vars:
     # We use this to control which server version we will install
     minecraft_version: "latest"
-    minecraft_port: "25566"
 
   tasks:
     # Installing using archlinux package manager, pacman.
@@ -81,13 +80,13 @@
     # https://docs.ansible.com/ansible/latest/collections/ansible/posix/firewalld_module.html
     - name: Opening port tcp
       firewalld:
-        port: "{{ minecraft_port }}/tcp"
+        port: 25565/tcp
         permanent: yes
         state: enabled
 
     - name: Opening port udp
       firewalld:
-        port: "{{ minecraft_port }}/udp"
+        port: 25565/udp
         permanent: yes
         state: enabled
 
@@ -96,5 +95,5 @@
     - name: Starting Minecraftansible.service
       systemd:
         name: minecraftansible
-        enabled: false
+        enabled: true
         state: started
