@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   vars:
-    # We use this to control which server version we will install
+    # We use this to control which server version we will install, change it whenever we want to change server version e.x. "1.20.1"
     minecraft_version: "latest"
 
   tasks:
