@@ -1,0 +1,15 @@
+[Unit]
+Description=start and stop the server
+
+[Service]
+WorkingDirectory=/opt/minecraftansible/
+
+User=minecraftadmin
+Group=minecraft
+Restart=on-failure
+RestartSec=20 5
+
+ExecStart=/usr/bin/java -Xms512M -Xmx1024M -jar server.jar nogui
+
+[Install]
+WantedBy=multi-user.target

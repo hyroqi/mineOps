@@ -3,6 +3,7 @@
   vars:
     # We use this to control which server version we will install
     minecraft_version: "latest"
+    minecraft_port: "25566"
 
   tasks:
     # Installing using archlinux package manager, pacman.
@@ -58,5 +59,42 @@
 
     # Download latest server version
     - name: Download latest server version
-      shell: curl -o /opt/minecraft/server.jar -sL $(curl `curl -sL https://launchermeta.mojang.com/mc/game/version_manifest.json | jq -r '.latest.release as $release | .versions[] | select(.id == $release) | .url'` | jq -r '.downloads.server.url')
+      shell: curl -o /opt/minecraftansible/server.jar -sL $(curl `curl -sL https://launchermeta.mojang.com/mc/game/version_manifest.json | jq -r '.latest.release as $release | .versions[] | select(.id == $release) | .url'` | jq -r '.downloads.server.url')
       when: minecraft_version =="latest"
+    
+    # Copy eula.txt and the systemd service to the directory using the copy module
+    # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html
+    - name: Copy EULA
+      copy:
+        src: eula.txt
+        owner: minecraftadmin
+        group: minecraft
+        dest: /opt/minecraftansible/eula.txt
+    
+    - name: Copy Systemd service
+      copy:
+        src: minecraftansible.service
+        dest: /usr/lib/systemd/system/minecraftansible.service
+    
+    # # Not needed for archlinux because ports are all open by default
+    # Opening firewall port using firewalld module
+    # https://docs.ansible.com/ansible/latest/collections/ansible/posix/firewalld_module.html
+    - name: Opening port tcp
+      firewalld:
+        port: "{{ minecraft_port }}/tcp"
+        permanent: yes
+        state: enabled
+
+    - name: Opening port udp
+      firewalld:
+        port: "{{ minecraft_port }}/udp"
+        permanent: yes
+        state: enabled
+
+    # Starting up the systemd service
+    # https://docs.ansible.com/ansible/latest/collections/ansible/builtin/systemd_module.html
+    - name: Starting Minecraftansible.service
+      systemd:
+        name: minecraftansible
+        enabled: false
+        state: started
