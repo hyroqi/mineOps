@@ -9,5 +9,10 @@ WORKDIR /minecraft
 COPY eula.txt .
 COPY server.jar .
 
+#if mods are wanted
+#COPY plugins/ /plugins/
+#COPY mods/ /mods/
+#COPY datapacks/ /data/world/datapacks
+
 #running the server
 CMD ["java", "-jar", "server.jar"]
